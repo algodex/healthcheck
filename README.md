@@ -22,6 +22,10 @@ Remember to edit the above.
 | MONITOR_MOUNTS   | Filesystem mounts that you wish to monitor.                                                                     |
 | SERVER_NAME      | Provide a unique name for the server. It is important to keep it unique so it does not overwrite other servers. |
 
+### Install npm modules
+
+`npm install`
+
 ## Run
 
 `npm run compile-and-run`
