@@ -15,15 +15,15 @@ tsc
 
 rm -f .env
 
-if [[ -z "$MONITOR_MOUNTS" ]]; then
-    echo "Must provide MONITOR_MOUNTS in environment" 1>&2
-    exit 1
-fi
+#if [[ -z "$MONITOR_MOUNTS" ]]; then
+#    echo "Must provide MONITOR_MOUNTS in environment" 1>&2
+#    exit 1
+#fi
 
-if [[ -z "$COUCHDB_DB_NAME" ]]; then
-    echo "Must provide MONITOR_MOUNTS in environment" 1>&2
-    exit 1
-fi
+#if [[ -z "$COUCHDB_DB_NAME" ]]; then
+#    echo "Must provide MONITOR_MOUNTS in environment" 1>&2
+#    exit 1
+#fi
 
 if [[ -z "$COUCHDB_BASE_URL" ]]; then
     echo "Must provide COUCHDB_BASE_URL in environment" 1>&2
