@@ -7,15 +7,24 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "Launch Status Check",
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/built/index.js",
+      "program": "${workspaceFolder}/built/src/index.js",
       "preLaunchTask": "tsc: build - tsconfig.json",
       "outFiles": [
         "${workspaceFolder}/built/**/*.js"
       ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Add View",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}/built/bin/add-view.js",
     }
   ]
 }
