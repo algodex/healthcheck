@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 
 
 require('dotenv').config();
-function emit(a,b) {}
+function emit(a,b) {
+  // do nothing. This is a stub.
+}
 
 const PouchDB = require('pouchdb');
 
@@ -25,7 +28,6 @@ const reduceFunc = function (keys, values, rereduce) {
 module.exports = function () {
   console.log(process.env.MONITOR_MOUNTS) // remove this after you've confirmed it working
 
-  const monitorMounts = JSON.parse(process.env.MONITOR_MOUNTS!);
   const fullCouchUrl = process.env.COUCHDB_BASE_URL! + '/' + process.env.COUCHDB_DB_NAME!;
   const db = new PouchDB(fullCouchUrl);
 
