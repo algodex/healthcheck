@@ -35,7 +35,7 @@ module.exports = function () {
     _id: '_design/server_status',
     _rev: undefined,
     views: {
-      server_status: {map: mapFunc.toString, reduce: reduceFunc.toString()}
+      server_status: {map: mapFunc.toString(), reduce: reduceFunc.toString()}
     }
   };
 
