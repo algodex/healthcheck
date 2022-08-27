@@ -1,3 +1,7 @@
+import axios from 'axios';
+
 export default async function getData() {
-  return 55;
+  const url = '/data'
+  const data = (await axios.get(url)).data;
+  return data;
 }
