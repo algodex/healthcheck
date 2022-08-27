@@ -4,7 +4,9 @@
   "description": "Healthcheck system for Algodex",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile-and-run": "tsc && node built/index.js",
+    "run-only": "node built/index.js"
   },
   "repository": {
     "type": "git",
