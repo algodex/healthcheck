@@ -8,6 +8,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import getData from '../lib/get_data';
+import { useEffect, useState } from 'react';
 
 function createData(
   name: string,
@@ -27,7 +29,36 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
+interface FileSystemStatus {
+  file_system: string,
+  size: string,
+  used: string,
+  available: string,
+  use_percent: string,
+  mounted_on: string
+}
+
+interface StatusData {
+  _id: string,
+  _rev: string,
+  external_ipaddr: string,
+  hostname: string,
+  datetime: string,
+  unix_time: number,
+  server_name: string,
+  filesystem_status: Array<FileSystemStatus>
+}
+
 export default function BasicTable() {
+  const [statusData, setStatusData] = useState<Array<StatusData>>([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getData();
+      setStatusData(data);
+      console.log('data is: ' + data);
+    }
+    fetchData();
+  },[]);
   return (
     <Container maxWidth="lg">
       <Typography variant="h4" gutterBottom sx={{'color':'#666'}}>
@@ -47,20 +78,22 @@ Algodex Health Status
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {statusData.map((row) => (
             <TableRow
-              key={row.name}
+              key={row._id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                {row.server_name}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="right">{row.hostname}</TableCell>
+              <TableCell align="right">
+                {row.filesystem_status[0].used} &nbsp;
+                ({row.filesystem_status[0].use_percent})</TableCell>
+              <TableCell align="right">{row.external_ipaddr}</TableCell>
+              <TableCell align="right">{row.datetime}</TableCell>
+              <TableCell align="right">{row.filesystem_status[0].mounted_on}</TableCell>
+              <TableCell align="right">{row.filesystem_status[0].file_system}</TableCell>
             </TableRow>
           ))}
         </TableBody>
