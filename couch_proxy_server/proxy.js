@@ -19,12 +19,12 @@ const getDatabase = () => {
 
 app.get('/', async (req, res) => {
   const db = getDatabase();
-  const rewardsData = await db.query('server_status/server_status', {
+  const statusData = await db.query('server_status/server_status', {
     reduce: true,
     group: true
   })
 
-  const getPromises = rewardsData.rows.map(row => {
+  const getPromises = statusData.rows.map(row => {
     const id = row.value._id;
     return db.get(id);
   });
