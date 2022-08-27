@@ -24,10 +24,18 @@ app.get('/', async (req, res) => {
     group: true
   })
 
-  const getPromises = statusData.rows.map(row => {
-    const id = row.value._id;
-    return db.get(id);
-  });
+  const idSet = new Set();
+
+  const getPromises = statusData.rows
+    .map(row => row.value._id)
+    .filter(id => {
+      const alreadySeen = idSet.has(id);
+      idSet.add(id);
+      return alreadySeen;
+    })
+    .map(id => {
+      return db.get(id);
+    });
 
   const allDocs = await Promise.all(getPromises);
   res.setHeader('Content-Type', 'application/json');
