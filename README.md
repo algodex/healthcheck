@@ -10,6 +10,9 @@ curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
+### Install TypeScript
+`sudo apt install node-typescript`
+
 Set up .env file
 `cp .env.example .env`
 
