@@ -1,5 +1,5 @@
 # healthcheck
-This is a monitoring system for Algodex services. It periodically stores the data in a CouchDB database where it can be viewed later.
+This is a monitoring system for Algodex services. It periodically stores the data in a CouchDB database where it can be viewed easily later.
 
 ## Setup
 
@@ -32,6 +32,6 @@ After it is compiled, you can run it more simply with:
 
 ## Cron Setup (todo)
 
-
+### healthchecks.io setup (todo)
 
 
