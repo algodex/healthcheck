@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 require('dotenv').config();
 
 const PouchDB = require('pouchdb');
-const addView = require('./add_view');
 
 console.log(process.env.MONITOR_MOUNTS) // remove this after you've confirmed it working
 
@@ -15,7 +15,7 @@ class FileSystemUsage {
   size: string;
   used: string;
   available: string;
-  use_percent: Number;
+  use_percent: number;
   mounted_on: string;
 }
 
@@ -37,7 +37,7 @@ const { execSync } = require('child_process');
 const hostname = execSync('hostname').toString().replace("\n","");
 const external_ipaddr = execSync('dig +short txt ch whoami.cloudflare @1.0.0.1')
   .toString().replaceAll("\n","").replaceAll('"','');
-const diskspace:String = execSync('df -h').toString();
+const diskspace:string = execSync('df -h').toString();
 console.log(diskspace);
 
 const regexp = /\s*([^\s])+\s*/gi;
@@ -63,7 +63,7 @@ const filesystems = lines.slice(1)
   .filter(line => line.match(regexp))
   .map(line => line.match(regexp)!.map(entry => entry.trim()))
   .reduce( (disks, separated) => {
-    let filesystem = new FileSystemUsage;
+    const filesystem = new FileSystemUsage;
     for (let i = 0; i < separated.length; i++) {
       const word = separated[i];
       const key = indexToHeader.get(i);
