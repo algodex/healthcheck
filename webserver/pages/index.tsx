@@ -8,6 +8,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import getData from '../lib/get_data';
+import { useEffect } from 'react';
 
 function createData(
   name: string,
@@ -28,6 +30,14 @@ const rows = [
 ];
 
 export default function BasicTable() {
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getData();
+      console.log('data is: ' + data);
+    }
+    fetchData();
+  },[]);
   return (
     <Container maxWidth="lg">
       <Typography variant="h4" gutterBottom sx={{'color':'#666'}}>
