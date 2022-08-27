@@ -11,7 +11,7 @@ else
   sudo apt install -y node-typescript
 fi
 
-#tsc
+tsc
 
 rm -f .env
 
