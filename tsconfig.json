@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
     "outDir": "./built",
     "allowJs": true,
     "target": "ESNext"
   },
-  "include": ["./src/**/*"]
+  "include": ["./src/**/*", "./bin/**/*"]
 }

@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const PouchDB = require('pouchdb');
+const addView = require('./add_view');
 
 console.log(process.env.MONITOR_MOUNTS) // remove this after you've confirmed it working
 
@@ -76,24 +77,31 @@ const filesystems = lines.slice(1)
     return disks;
   }, new Array<FileSystemUsage>);
 
+const unix_time = Math.round(Date.now() / 1000);
 const newDate = new Date(Date.now());
 const utc_timestamp = newDate.toUTCString();
 console.log(utc_timestamp);
 const doc = {
-  _id: process.env.SERVER_NAME,
-  _rev: undefined,
+  // _id: process.env.SERVER_NAME,
+  // _rev: undefined,
   hostname:hostname,
   external_ipaddr,
   datetime: utc_timestamp,
+  unix_time: unix_time,
   filesystem_status: filesystems,
+  server_name: process.env.SERVER_NAME
 };
 
-db.get(doc._id).then(function(fetchedDoc) {
-  doc._rev = fetchedDoc._rev;
-  return db.put(doc);
-}).then(function(response) {
-  // handle response
-}).catch(function (err) {
-  return db.put(doc);
-});
-console.log({ filesystems });
+db.post(doc);
+
+// db.get(doc._id).then(function(fetchedDoc) {
+//   doc._rev = fetchedDoc._rev;
+//   return db.put(doc);
+// }).then(function(response) {
+//   // handle response
+// }).catch(function (err) {
+//   return db.put(doc);
+// });
+// console.log({ filesystems });
+
+// addView('asdsa');
