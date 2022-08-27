@@ -1,9 +1,9 @@
 # healthcheck
 This is a monitoring system for Algodex services. It periodically stores the data in a CouchDB database where it can be viewed easily later.
 
-## Setup
+## Setup (Ubuntu)
 
-#### Ubuntu
+### Install Node.js
 
 ```
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
