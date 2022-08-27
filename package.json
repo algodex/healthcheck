@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile-and-run": "tsc && node built/index.js",
-    "run-only": "node built/index.js",
+    "compile-and-run": "tsc && node built/src/index.js",
+    "run-only": "node built/src/index.js",
     "lint": "eslint . --ext .ts"
   },
   "repository": {
