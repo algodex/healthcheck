@@ -56,7 +56,7 @@ const indexToHeader = separated.reduce((map, entry) => {
   }
   i++;
   return map;
-}, new Map<number,string>);
+}, new Map<number,string>());
 
 
 const filesystems = lines.slice(1)
@@ -75,7 +75,7 @@ const filesystems = lines.slice(1)
       disks.push(filesystem);
     }
     return disks;
-  }, new Array<FileSystemUsage>);
+  }, new Array<FileSystemUsage>());
 
 const unix_time = Math.round(Date.now() / 1000);
 const newDate = new Date(Date.now());
