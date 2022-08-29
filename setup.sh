@@ -10,8 +10,10 @@ cd "$(dirname "$0")"
 
 # FIXME - double check directory is named properly
 
+set +e
 NODE_EXISTS=`node -v`
 TYPESCRIPT_EXISTS=`tsc -v`
+set -e
 
 if [[ "$NODE_EXISTS" =~ ^v[0-9]+.* ]]; then 
   echo "node exists, skipping install"
