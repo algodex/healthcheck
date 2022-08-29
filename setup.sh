@@ -5,8 +5,10 @@ set -e
 cd "$(dirname "$0")"
 
 # Rename to correct directory name
-mv "$PWD" "${PWD%/*}/healthcheck"
-cd "${PWD%/*}/healthcheck"
+#mv "$PWD" "${PWD%/*}/healthcheck"
+#cd "${PWD%/*}/healthcheck"
+
+# FIXME - double check directory is named properly
 
 NODE_EXISTS=`node -v`
 TYPESCRIPT_EXISTS=`tsc -v`
