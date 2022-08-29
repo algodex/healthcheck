@@ -37,7 +37,7 @@ export default function BasicTable() {
   },[]);
   return (
     <Container maxWidth="lg">
-      <Typography variant="h4" gutterBottom sx={{'color':'#444'}}>
+      <Typography variant="h4" gutterBottom sx={{'color':'#444',paddingTop:'12px'}}>
 Algodex Health Status      
 </Typography>
     <TableContainer component={Paper}>
