@@ -4,7 +4,7 @@ set -x
 
 # Disable prompts to restart services
 # https://askubuntu.com/questions/1367139/apt-get-upgrade-auto-restart-services
-sudo sed -i 's/#$nrconf{restart} = '"'"'i'"'"';/$nrconf{restart} = '"'"'l'"'"';/g' /etc/needrestart/needrestart.conf
+sudo sed -i 's/#$nrconf{restart} = '"'"'i'"'"';/$nrconf{restart} = '"'"'a'"'"';/g' /etc/needrestart/needrestart.conf
 
 # Cd to directory of script
 cd "$(dirname "$0")"
