@@ -47,15 +47,15 @@ Algodex Health Status
               key={row._id+':'+row.filesystem_status[0].file_system}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" sx={{whiteSpace: 'nowrap'}}>
                 {row.server_name}
               </TableCell>
               <TableCell align="right">{row.hostname}</TableCell>
-              <TableCell align="right">
+              <TableCell align="right" sx={{whiteSpace: 'nowrap'}}>
                 {row.filesystem_status[0].used} &nbsp;
                 ({row.filesystem_status[0].use_percent})</TableCell>
               <TableCell align="right">{row.external_ipaddr}</TableCell>
-              <TableCell align="right">{row.datetime}</TableCell>
+              <TableCell align="right" sx={{whiteSpace: 'nowrap'}}>{row.datetime}</TableCell>
               <TableCell align="right">{row.filesystem_status[0].mounted_on}</TableCell>
               <TableCell align="right">{row.filesystem_status[0].file_system}</TableCell>
             </TableRow>
