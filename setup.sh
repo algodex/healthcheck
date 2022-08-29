@@ -93,3 +93,20 @@ echo "Printing full crontab entry:"
 CRONTAB_EXISTS=$(crontab -l)
 echo "${CRONTAB_EXISTS}"
 
+
+# For some reason - need to add it a second time? I don't understand why
+
+CRON_EXISTS=0
+CRON_COMMAND="cd /home/ubuntu/healthcheck && npm run run-only && curl -fsS -m 10 --retry 5 -o /dev/null $HEALTHCHECKS_URL"
+crontab -l | grep -q 'healthcheck' && CRON_EXISTS=1
+if [ "$CRON_EXISTS" == "0" ]; then
+  echo "Adding to crontab"
+  (crontab -l 2>/dev/null; echo "10 * * * * $CRON_COMMAND") | crontab -
+fi
+
+echo "Printing full crontab entry:"
+CRONTAB_EXISTS=$(crontab -l)
+echo "${CRONTAB_EXISTS}"
+
+
+
