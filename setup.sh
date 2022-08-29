@@ -4,6 +4,10 @@ set -e
 # Cd to directory of script
 cd "$(dirname "$0")"
 
+# Rename to correct directory name
+mv "$PWD" "${PWD%/*}/healthcheck"
+cd "${PWD%/*}/healthcheck"
+
 NODE_EXISTS=`node -v`
 TYPESCRIPT_EXISTS=`tsc -v`
 
@@ -20,6 +24,7 @@ else
   sudo apt install -y node-typescript
 fi
 
+npm install
 tsc
 
 rm -f .env
@@ -65,8 +70,11 @@ echo "COUCHDB_BASE_URL=$COUCHDB_BASE_URL" >> .env
 echo "SERVER_NAME=$SERVER_NAME" >> .env
 
 CRON_EXISTS=0
+CRON_COMMAND="cd /home/ubuntu/healthcheck && npm run run-only && curl -fsS -m 10 --retry 5 -o /dev/null $HEALTHCHECKS_URL"
 crontab -l | grep -q 'healthcheck' && CRON_EXISTS=1
 if [ "$CRON_EXISTS" == "0" ]; then
   echo "Adding to crontab"
-  (crontab -l 2>/dev/null; echo "10 * * * * cd /home/ubuntu/healthcheck && npm run run-only && curl -fsS -m 10 --retry 5 -o /dev/null $HEALTHCHECKS_URL") | crontab -  
+  (crontab -l 2>/dev/null; echo "10 * * * * $CRON_COMMAND") | crontab -
 fi
+echo $CRON_COMMAND
+bash -c $CRON_COMMAND
