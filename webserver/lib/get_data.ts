@@ -24,7 +24,6 @@ export interface StatusData {
 export async function getData() {
   const url = '/data'
   const data:Array<StatusData> = (await axios.get(url)).data;
-  console.log(JSON.stringify(data));
   const retdata:Array<StatusData> = [];
 
   data.forEach(server => {
