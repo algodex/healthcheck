@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+set -x
 
 # Cd to directory of script
 cd "$(dirname "$0")"
