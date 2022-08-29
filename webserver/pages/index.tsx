@@ -17,9 +17,11 @@ export default function BasicTable() {
     const fetchData = async () => {
       const data = await getData();
       setStatusData(data);
-      console.log('data is: ' + data);
     }
     fetchData();
+    setInterval(() => {
+      fetchData()
+    }, 1000 * 60) // in milliseconds
   },[]);
   return (
     <Container maxWidth="lg">
@@ -42,7 +44,7 @@ Algodex Health Status
         <TableBody>
           {statusData.map((row) => (
             <TableRow
-              key={row._id}
+              key={row._id+':'+row.filesystem_status[0].file_system}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
