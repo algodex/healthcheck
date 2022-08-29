@@ -1,13 +1,22 @@
 #!/bin/bash
 set -e
 
+# Cd to directory of script
+cd "$(dirname "$0")"
+
 NODE_EXISTS=`node -v`
+TYPESCRIPT_EXISTS=`tsc -v`
 
 if [[ "$NODE_EXISTS" =~ ^v[0-9]+.* ]]; then 
   echo "node exists, skipping install"
 else
   curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
   sudo apt-get install -y nodejs
+fi
+
+if [[ "$TYPESCRIPT_EXISTS" =~ ^Version.* ]]; then 
+  echo "typescript exists, skipping install"
+else
   sudo apt install -y node-typescript
 fi
 
