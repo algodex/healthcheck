@@ -31,7 +31,7 @@ app.get('/', async (req, res) => {
     .filter(id => {
       const alreadySeen = idSet.has(id);
       idSet.add(id);
-      return alreadySeen;
+      return !alreadySeen;
     })
     .map(id => {
       return db.get(id);
