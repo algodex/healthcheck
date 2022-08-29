@@ -11,6 +11,18 @@ import Typography from '@mui/material/Typography';
 import { getData, FileSystemStatus, StatusData} from '../lib/get_data';
 import { useEffect, useState } from 'react';
 
+const getColor = (usePercentFormatted:string) => {
+  const regexp = /([0-9]+)%/;
+  const match = usePercentFormatted.match(regexp)!;
+
+  if (parseFloat(match[0]) > 85) {
+    return '#f6a5c0'; // red
+  } else if (parseFloat(match[0]) > 60) {
+    return '#fff7b0'; // yellow
+  }
+  return '#b7deb8'; //green
+}
+
 export default function BasicTable() {
   const [statusData, setStatusData] = useState<Array<StatusData>>([]);
   useEffect(() => {
@@ -25,14 +37,14 @@ export default function BasicTable() {
   },[]);
   return (
     <Container maxWidth="lg">
-      <Typography variant="h4" gutterBottom sx={{'color':'#666'}}>
+      <Typography variant="h4" gutterBottom sx={{'color':'#444'}}>
 Algodex Health Status      
 </Typography>
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Server Name</TableCell>
+            <TableCell >Server Name</TableCell>
             <TableCell align="right">Host Name</TableCell>
             <TableCell align="right">Disk Usage</TableCell>
             <TableCell align="right">Ip Address</TableCell>
@@ -45,7 +57,7 @@ Algodex Health Status
           {statusData.map((row) => (
             <TableRow
               key={row._id+':'+row.filesystem_status[0].file_system}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              sx={{ 'background': getColor(row.filesystem_status[0].use_percent), '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row" sx={{whiteSpace: 'nowrap'}}>
                 {row.server_name}
