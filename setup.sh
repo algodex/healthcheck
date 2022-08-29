@@ -85,8 +85,10 @@ if [ "$CRON_EXISTS" == "0" ]; then
   echo "Adding to crontab"
   (crontab -l 2>/dev/null; echo "10 * * * * $CRON_COMMAND") | crontab -
 fi
-echo "Running cron command: $CRON_COMMAND"
-bash -c $CRON_COMMAND
+
+# FIXME - doesnt seem to work
+#echo "Running cron command: $CRON_COMMAND"
+#bash -c $CRON_COMMAND
 echo "Printing full crontab entry:"
 CRONTAB_EXISTS=$(crontab -l)
 echo "${CRONTAB_EXISTS}"
